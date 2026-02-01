@@ -37,6 +37,12 @@ def test_fetch_weather_no_egress(no_egress):
 
 ---
 
+## Notebooks
+
+The notebooks in `notebooks/` are for researchers to pressure-test assumptions (e.g. telemetry, SDK egress, edge cases). Add cells and try scenarios; deterministic coverage lives in `tests/`.
+
+---
+
 ## Known limitations
 
 1. **Subprocess bypass** — Child processes (`subprocess`, CLIs, browsers) are out of scope for v0.
