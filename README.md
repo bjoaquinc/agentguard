@@ -9,7 +9,8 @@ This library does **not** claim OS/network-level isolation. It produces develope
 
 ## Purpose
 
-Use `agentguard` in tests to enforce that capability code paths (agent-callable functions) do not make uncontrolled outbound calls. If any attempt occurs outside the allowlist, the test fails with evidence.
+Agent-callable functions and their dependencies can silently perform outbound network calls (telemetry, redirects, model downloads) that expand what the agent is allowed to do.
+This library lets you assert, in tests and CI, that agent capabilities only make explicitly allowed network calls—and fail deterministically when they don’t.
 
 ---
 
@@ -28,7 +29,8 @@ def fetch_weather(city: str) -> dict:
 **With agentguard:** automated verification of one invariant.
 
 ```python
-def test_fetch_weather_no_egress(no_egress):
+def test_fetch_weather_no_egress():
+    from agentguard import no_egress
     with no_egress(allow_hosts={"api.weather.com"}):
         fetch_weather("London")
     # If any uncontrolled outbound attempt occurs,
