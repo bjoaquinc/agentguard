@@ -7,6 +7,7 @@ requires-python = ">=3.10"
 
 [project.optional-dependencies]
 dev = ["pytest>=7"]
+notebooks = ["marimo[recommended]"]
 
 [build-system]
 requires = ["setuptools>=61"]
